@@ -6,17 +6,24 @@ import com.seattlesolvers.solverslib.hardware.motors.MotorEx;
 import com.seattlesolvers.solverslib.hardware.motors.MotorGroup;
 
 import org.firstinspires.ftc.teamcode.subsystems.ShooterSubsystem;
-
 public class Robot extends com.seattlesolvers.solverslib.command.Robot {
     private static final Robot instance = new Robot();
+
+    private MotorEx liftLeft;
+    private MotorEx liftRight;
+    private MotorGroup liftMotorGroup;
+
     public static Robot getInstance() {
         return instance;
     }
     public MotorGroup shooterMotors;
-
     public ShooterSubsystem shooterSubsystem;
 
     public void init(HardwareMap hMap) {
+        liftLeft = hMap.get(MotorEx.class, "liftLeft");
+        liftRight = hMap.get(MotorEx.class, "liftRight");
+        liftMotorGroup = new MotorGroup(liftLeft, liftRight);
+
         shooterMotors = new MotorGroup(
                 new MotorEx(hMap, "shooter1").setInverted(true),
                 new MotorEx(hMap, "shooter2").setInverted(false)

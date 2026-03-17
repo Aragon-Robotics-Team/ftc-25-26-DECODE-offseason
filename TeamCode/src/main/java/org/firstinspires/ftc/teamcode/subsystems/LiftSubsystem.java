@@ -5,14 +5,16 @@ import com.seattlesolvers.solverslib.command.SubsystemBase;
 import com.seattlesolvers.solverslib.hardware.motors.MotorEx;
 import com.seattlesolvers.solverslib.hardware.motors.MotorGroup;
 
+import org.firstinspires.ftc.teamcode.global.Robot;
+
 public class LiftSubsystem extends SubsystemBase {
-    private MotorEx liftLeft;
-    private MotorEx liftRight;
-    private MotorGroup liftMotorGroup;
-    public LiftSubsystem(final HardwareMap hardwareMap) {
-        liftLeft = hardwareMap.get(MotorEx.class, "liftLeft");
-        liftRight = hardwareMap.get(MotorEx.class, "liftRight");
-        liftMotorGroup = new MotorGroup(liftLeft, liftRight);
+    private final Robot robot = Robot.getInstance();
+    public enum LiftState {
+        DOWN, UP
+    }
+
+    public LiftSubsystem() {
+
     }
     public void up() {
         //set pid target to up
