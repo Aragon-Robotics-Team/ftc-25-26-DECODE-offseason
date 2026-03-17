@@ -1,0 +1,9 @@
+Turret (270 deg)
+Intake (pivot w/ servo)
+Mecanum Wheels
+2 Wheel Odometry (Pinpoint)
+Limelight on turret that pivots
+Beam break sensors in intake (count num balls in robot)
+Lift (double slide park)
+Shooter (double motor)
+Adjustable hood (servo)
