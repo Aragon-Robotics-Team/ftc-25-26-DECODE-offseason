@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.seattlesolvers.solverslib.command.SubsystemBase;
 
-import org.firstinspires.ftc.teamcode.global.Constants;
+import static org.firstinspires.ftc.teamcode.global.Constants.*;
 import org.firstinspires.ftc.teamcode.global.Robot;
 
 public class IntakeSubsystem extends SubsystemBase {
@@ -19,18 +19,16 @@ public class IntakeSubsystem extends SubsystemBase {
     public void setIntake(IntakeState state) {
         switch(state) {
             case INTAKE_IN:
-                robot.intakeMotor.setPower(Constants.INTAKE_MOTOR_IN);
-                currentState = state;
+                robot.intakeMotor.setPower(INTAKE_MOTOR_IN);
                 break;
             case INTAKE_STILL:
                 robot.intakeMotor.setPower(0);
-                currentState = state;
                 break;
             case INTAKE_OUT:
-                robot.intakeMotor.setPower(Constants.INTAKE_MOTOR_OUT);
-                currentState = state;
+                robot.intakeMotor.setPower(INTAKE_MOTOR_OUT);
                 break;
         }
+        currentState = state;
     }
 
 }
