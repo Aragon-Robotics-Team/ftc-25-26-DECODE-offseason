@@ -17,4 +17,9 @@ public class Constants {
     public static double MIN_HOOD_SERVO_POS = 0.28; //match with value above
     public static double MAX_HOOD_ANGLE = 45; //degrees
     public static double MAX_HOOD_SERVO_POS = 0.82; //match with value above
+
+
+    // Intake
+    public final static double INTAKE_MOTOR_IN = 1.0;
+    public final static double INTAKE_MOTOR_OUT = -1.0;
 }
