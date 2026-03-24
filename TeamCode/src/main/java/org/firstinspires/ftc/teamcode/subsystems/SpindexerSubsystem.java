@@ -16,7 +16,7 @@ public class SpindexerSubsystem extends SubsystemBase {
     /*public static double p = 0, i = 0, d = 0;
     public static double f = 0;*/
     public static int target = 0; //double?
-
+    
     private final PIDFController spindexerController = new PIDFController(SPINDEXER_PID_COEFFICIENTS);
 
     public void setPIDF(double p, double i, double d, double f) {
@@ -25,7 +25,10 @@ public class SpindexerSubsystem extends SubsystemBase {
 
     public void setSpindexerTarget(int newTarget) {
         target = newTarget;
+    }
 
+    @Override
+    public void periodic() {
         int spindexerPos = robot.spindexerMotor.getCurrentPosition();
         double pid = spindexerController.calculate(spindexerPos, target);
         double ff = Math.cos(Math.toRadians(target / ticks_in_degree)) * SPINDEXER_PID_COEFFICIENTS.f; //feedforward
@@ -35,6 +38,5 @@ public class SpindexerSubsystem extends SubsystemBase {
         robot.spindexerMotor.setPower(power);
     }
 
-    
 
 }
