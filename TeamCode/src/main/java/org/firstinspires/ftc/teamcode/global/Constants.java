@@ -18,4 +18,8 @@ public class Constants {
     // Intake
     public final static double INTAKE_MOTOR_IN = 1.0;
     public final static double INTAKE_MOTOR_OUT = -1.0;
+
+    // Spindexer
+    public static PIDFCoefficients SPINDEXER_PID_COEFFICIENTS = new PIDFCoefficients(0, 0, 0, 0); //tune
+
 }

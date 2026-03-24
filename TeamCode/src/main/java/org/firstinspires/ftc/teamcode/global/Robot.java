@@ -45,9 +45,11 @@ public class Robot extends com.seattlesolvers.solverslib.command.Robot {
         shooter.setRunMode(Motor.RunMode.RawPower);
 
         //intake
+        intakeMotor = hMap.get(DcMotor.class, "intakeMotor");
         intakeSubsystem.setIntake(IntakeSubsystem.IntakeState.INTAKE_STILL);
 
         //spindexer
+        spindexerMotor = hMap.get(DcMotorEx.class, "spindexer");
 
     }
 
