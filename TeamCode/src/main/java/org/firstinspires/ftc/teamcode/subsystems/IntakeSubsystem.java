@@ -31,6 +31,10 @@ public class IntakeSubsystem extends SubsystemBase {
         currentState = state;
     }
 
+    public void init() {
+        //
+    }
+
 }
 
 

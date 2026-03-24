@@ -9,10 +9,10 @@ import com.seattlesolvers.solverslib.util.TelemetryData;
 
 import org.firstinspires.ftc.teamcode.global.Robot;
 
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "FullTeleop")
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "Teleop")
 public class TeleOp extends CommandOpMode {
-    public GamepadEx driver;
-    public GamepadEx operator;
+    public GamepadEx driver1;
+    public GamepadEx driver2;
 
     public ElapsedTime timer;
 
@@ -28,16 +28,13 @@ public class TeleOp extends CommandOpMode {
         //init robot which does most hardware initalizations I think
         robot.init(hardwareMap);
 
-        driver = new GamepadEx(gamepad1);
-        operator = new GamepadEx(gamepad2);
+        driver1 = new GamepadEx(gamepad1);
+        driver2 = new GamepadEx(gamepad2);
     }
 
+    @Override
     public void run() {
-
-        //UNFINISHED
-
-
-
+        //
     }
 
 }

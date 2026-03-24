@@ -4,8 +4,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.seattlesolvers.solverslib.command.CommandScheduler;
 import com.seattlesolvers.solverslib.hardware.motors.Motor;
 import com.seattlesolvers.solverslib.hardware.motors.MotorEx;
+import com.seattlesolvers.solverslib.util.TelemetryData;
 
 import org.firstinspires.ftc.teamcode.subsystems.ClimbSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
@@ -22,7 +24,6 @@ public class Robot extends com.seattlesolvers.solverslib.command.Robot {
     public Servo liftLeft;
     public Servo liftRight;
     public MotorEx shooter;
-//    public MotorGroup shooterMotors;
     public DcMotor intakeMotor;
     public DcMotorEx spindexerMotor;
 
@@ -42,17 +43,24 @@ public class Robot extends com.seattlesolvers.solverslib.command.Robot {
         shooter = hMap.get(MotorEx.class, "shooter1");
         shooter.setZeroPowerBehavior(Motor.ZeroPowerBehavior.FLOAT);
         shooter.setRunMode(Motor.RunMode.RawPower);
-//        shooterMotors = new MotorGroup(
-//                new MotorEx(hMap, "shooter1").setInverted(true),
-//                new MotorEx(hMap, "shooter2").setInverted(false)
-//        );
-//        shooterMotors.setZeroPowerBehavior(Motor.ZeroPowerBehavior.FLOAT);
-//        shooterMotors.setRunMode(Motor.RunMode.RawPower);
 
         //intake
         intakeSubsystem.setIntake(IntakeSubsystem.IntakeState.INTAKE_STILL);
 
         //spindexer
 
+    }
+
+    public void initHasMovement() {
+        intakeSubsystem.init();
+        shooterSubsystem.init();
+    }
+
+    public void updateLoop(TelemetryData telemetryData) {
+        CommandScheduler.getInstance().run();
+
+        if (telemetryData != null) {
+            telemetryData.update();
+        }
     }
 }
