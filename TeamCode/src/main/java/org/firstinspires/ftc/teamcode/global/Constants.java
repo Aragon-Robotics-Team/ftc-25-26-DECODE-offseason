@@ -3,11 +3,6 @@ package org.firstinspires.ftc.teamcode.global;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 public class Constants {
-    // Climb
-    public static double LEFT_CLIMB_UP = 0.11;
-    public static double RIGHT_CLIMB_UP = 0.9;
-    public static double LEFT_CLIMB_DOWN = 0.57;
-    public static double RIGHT_CLIMB_DOWN = 0.42;
 
     // Shooter
     public static PIDFCoefficients FLYWHEEL_PIDF_COEFFICIENTS = new PIDFCoefficients(-0.0070,0,0,-0.00052);
