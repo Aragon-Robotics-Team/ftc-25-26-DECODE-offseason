@@ -39,9 +39,11 @@ public class Robot extends com.seattlesolvers.solverslib.command.Robot {
 
         //intake
         intakeSubsystem = new IntakeSubsystem();
+        intakeMotor = hMap.get(DcMotor.class, "intakeMotor");
         intakeSubsystem.setIntake(IntakeSubsystem.IntakeState.INTAKE_STILL);
 
         //spindexer
+        spindexerMotor = hMap.get(DcMotorEx.class, "spindexer");
 
     }
 
