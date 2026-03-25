@@ -29,6 +29,7 @@ public class ShooterPIDTuning extends CommandOpMode {
     public static double TARGET_VELO = 0;
 
     private double motorVel = 0;
+    private double power = 0.0;
 
     private final PIDFController shooterPIDF = new PIDFController(P,I,D,F);
     public ElapsedTime timer;
@@ -53,7 +54,7 @@ public class ShooterPIDTuning extends CommandOpMode {
         shooterPIDF.setPIDF(P,I,D,F);
 
         shooterPIDF.setSetPoint(TARGET_VELO);
-        double power = shooterPIDF.calculate(motorVel,TARGET_VELO);
+        power = shooterPIDF.calculate(motorVel,TARGET_VELO);
 
         robot.shooter.set(power);
 
