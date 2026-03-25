@@ -14,17 +14,17 @@ public class ShooterSubsystem extends SubsystemBase {
      public double getTargetTicks() {
           return flywheelController.getSetPoint();
      }
-     public double getVelocityTicks() {
+     public double getActualTicks() {
           return robot.shooter.getCorrectedVelocity();
      }
      public boolean isAtTargetVelocity() {
-          return Math.abs(flywheelController.getSetPoint() - getVelocityTicks()) < 50;
+          return Math.abs(getTargetTicks() - getActualTicks()) < 50;
      }
      public void setPIDF(double p, double i, double d, double f) {
           this.flywheelController.setPIDF(p,i,d,f);
      }
      public void setTargetTicks(double ticksPerSec) {
-          flywheelController.setSetPoint(Math.min(ticksPerSec, SHOOTER_MAX_VELOCITY));
+          flywheelController.setSetPoint(ticksPerSec);
      }
 
      public void init() {
@@ -32,6 +32,6 @@ public class ShooterSubsystem extends SubsystemBase {
      }
 
      public void periodic() {
-          robot.shooter.set(flywheelController.calculate(getVelocityTicks()));
+          robot.shooter.set(flywheelController.calculate(getActualTicks(), getTargetTicks()));
      }
 }

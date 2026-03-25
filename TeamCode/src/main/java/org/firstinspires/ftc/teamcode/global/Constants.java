@@ -8,7 +8,6 @@ public class Constants {
     public static PIDFCoefficients FLYWHEEL_PIDF_COEFFICIENTS = new PIDFCoefficients(-0.0070,0,0,-0.00052);
     public static double SHOOTER_FAR_VELOCITY = 1500; // Ticks/second
     public static double SHOOTER_CLOSE_VELOCITY = 1200; // Ticks/second
-    public static double SHOOTER_MAX_VELOCITY = 2000; // Ticks/second
 
     // Intake
     public final static double INTAKE_MOTOR_IN = 1.0;

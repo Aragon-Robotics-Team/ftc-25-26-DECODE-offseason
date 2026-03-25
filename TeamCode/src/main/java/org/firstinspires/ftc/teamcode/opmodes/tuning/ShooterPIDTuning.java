@@ -27,17 +27,14 @@ public class ShooterPIDTuning extends CommandOpMode {
     public static double F = 0;
 
     public static double TARGET_VELO = 0;
-    public static double TOLERANCE = 0;
 
     private double motorVel = 0;
-    private double MOTOR_POWER = 0;
 
     private final PIDFController shooterPIDF = new PIDFController(P,I,D,F);
     public ElapsedTime timer;
     TelemetryData telemetryData;
     private final Robot robot = Robot.getInstance();
 
-    private MotorEx motor;
 
     @Override
     public void initialize() {
@@ -55,14 +52,14 @@ public class ShooterPIDTuning extends CommandOpMode {
             timer = new ElapsedTime();
         }
 
-        motorVel = motor.encoder.getCorrectedVelocity();
+        motorVel = robot.shooter.encoder.getCorrectedVelocity();
 
         shooterPIDF.setPIDF(P,I,D,F);
 
         shooterPIDF.setSetPoint(TARGET_VELO);
         double power = shooterPIDF.calculate(motorVel,TARGET_VELO);
 
-        motor.set(power);
+        robot.shooter.set(power);
 
         telemetryData.addData("Loop time", timer.milliseconds());
         timer.reset();
@@ -70,8 +67,8 @@ public class ShooterPIDTuning extends CommandOpMode {
         telemetryData.addData("power", power);
         telemetryData.addData("target velocity", TARGET_VELO);
         telemetryData.addData("actual velocity", motorVel);
-        telemetryData.addData("motor velocity", motor.getVelocity());
-        telemetryData.addData("encoder position", motor.encoder.getPosition());
+        telemetryData.addData("motor velocity", robot.shooter.getVelocity());
+        telemetryData.addData("encoder position", robot.shooter.encoder.getPosition());
 
         telemetryData.update();
     }
