@@ -30,12 +30,11 @@ public class Robot extends com.seattlesolvers.solverslib.command.Robot {
     public SpindexerSubsystem spindexerSubsystem;
 
     public void init(HardwareMap hMap) {
-
         //shooter
+        shooterSubsystem = new ShooterSubsystem();
         shooter = new MotorEx(hMap, "shooter");
         shooter.setZeroPowerBehavior(Motor.ZeroPowerBehavior.FLOAT);
         shooter.setRunMode(Motor.RunMode.RawPower);
-        shooterSubsystem = new ShooterSubsystem();
 
         //intake
         intakeSubsystem = new IntakeSubsystem();
@@ -43,12 +42,8 @@ public class Robot extends com.seattlesolvers.solverslib.command.Robot {
         intakeSubsystem.setIntake(IntakeSubsystem.IntakeState.INTAKE_STILL);
 
         //spindexer
+        spindexerSubsystem = new SpindexerSubsystem();
         spindexerMotor = hMap.get(DcMotorEx.class, "spindexer");
 
-    }
-
-    public void initHasMovement() {
-        intakeSubsystem.init();
-        shooterSubsystem.init();
     }
 }

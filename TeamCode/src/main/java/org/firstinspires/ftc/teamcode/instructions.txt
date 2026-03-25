@@ -1,6 +1,0 @@
-Intake ✅
-Mecanum Wheels
-Spindexer
-2 Wheel Odometry (Pinpoint)
-C270 camera
-Shooter (single? motor)

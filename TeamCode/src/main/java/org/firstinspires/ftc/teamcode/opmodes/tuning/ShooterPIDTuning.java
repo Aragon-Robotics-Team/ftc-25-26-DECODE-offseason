@@ -32,23 +32,19 @@ public class ShooterPIDTuning extends CommandOpMode {
 
     private final PIDFController shooterPIDF = new PIDFController(P,I,D,F);
     public ElapsedTime timer;
-    TelemetryData telemetryData;
     private final Robot robot = Robot.getInstance();
 
 
     @Override
     public void initialize() {
-        robot.init(hardwareMap);
-
-        telemetryData = new TelemetryData(new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry()));
-
         super.reset();
+
+        robot.init(hardwareMap);
     }
 
     @Override
     public void run() {
         if (timer == null) {
-            robot.initHasMovement();
             timer = new ElapsedTime();
         }
 
@@ -61,16 +57,16 @@ public class ShooterPIDTuning extends CommandOpMode {
 
         robot.shooter.set(power);
 
-        telemetryData.addData("Loop time", timer.milliseconds());
+        telemetry.addData("Loop time", timer.milliseconds());
         timer.reset();
 
-        telemetryData.addData("power", power);
-        telemetryData.addData("target velocity", TARGET_VELO);
-        telemetryData.addData("actual velocity", motorVel);
-        telemetryData.addData("motor velocity", robot.shooter.getVelocity());
-        telemetryData.addData("encoder position", robot.shooter.encoder.getPosition());
+        telemetry.addData("power", power);
+        telemetry.addData("target velocity", TARGET_VELO);
+        telemetry.addData("actual velocity", motorVel);
+        telemetry.addData("motor velocity", robot.shooter.getVelocity());
+        telemetry.addData("encoder position", robot.shooter.encoder.getPosition());
 
-        telemetryData.update();
+        telemetry.update();
     }
 
 }
