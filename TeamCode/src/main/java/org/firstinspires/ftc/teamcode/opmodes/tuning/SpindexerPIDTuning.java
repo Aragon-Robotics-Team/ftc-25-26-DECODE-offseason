@@ -30,6 +30,9 @@ public class SpindexerPIDTuning extends CommandOpMode {
     private final Robot robot = Robot.getInstance();
     public static int TARGET = 0;
 
+    int spindexerPos;
+    double pid;
+
     @Override
     public void initialize() {
 
@@ -42,25 +45,24 @@ public class SpindexerPIDTuning extends CommandOpMode {
     @Override
     public void run() {
         if (timer == null) {
-            robot.initHasMovement();
             timer = new ElapsedTime();
         }
 
         driver = new GamepadEx(gamepad1);
 
         spindexerPIDF.setPIDF(P,I,D,F);
-        int spindexerPos = robot.spindexerMotor.getCurrentPosition();
-        double pid = spindexerPIDF.calculate(spindexerPos, TARGET);
+        spindexerPos = robot.spindexerMotor.getCurrentPosition();
+        pid = spindexerPIDF.calculate(spindexerPos, TARGET);
 
         robot.spindexerMotor.setPower(pid);
 
-        telemetryData.addData("Loop time", timer.milliseconds());
+        telemetry.addData("Loop time", timer.milliseconds());
         timer.reset();
 
-        telemetryData.addData("target: ", TARGET);
-        telemetryData.addData("spindexerPos: ", spindexerPos);
+        telemetry.addData("target: ", TARGET);
+        telemetry.addData("spindexerPos: ", spindexerPos);
 
-        telemetryData.update();
+        telemetry.update();
 
     }
 
