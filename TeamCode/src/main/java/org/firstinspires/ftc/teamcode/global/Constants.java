@@ -15,5 +15,6 @@ public class Constants {
 
     // Spindexer
     public static PIDFCoefficients SPINDEXER_PID_COEFFICIENTS = new PIDFCoefficients(0, 0, 0, 0); //tune
+    public final static double TICKS_IN_DEGREE_SPINDEXER = 8192.0 / 360;
 
 }
