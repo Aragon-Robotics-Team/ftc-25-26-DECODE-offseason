@@ -27,6 +27,7 @@ public class SpindexerPIDTuning extends CommandOpMode {
     public GamepadEx driver;
     public ElapsedTime timer;
     private final Robot robot = Robot.getInstance();
+    MultipleTelemetry telemetry;
     public static int TARGET = 0;
 
     int spindexerPos;
@@ -35,6 +36,7 @@ public class SpindexerPIDTuning extends CommandOpMode {
     @Override
     public void initialize() {
         robot.init(hardwareMap);
+        telemetry = new MultipleTelemetry();
 
         super.reset();
     }
