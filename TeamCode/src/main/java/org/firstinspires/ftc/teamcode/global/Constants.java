@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 public class Constants {
 
     // Shooter
-    public static PIDFCoefficients FLYWHEEL_PIDF_COEFFICIENTS = new PIDFCoefficients(-0.0070,0,0,-0.00052);
+    public static PIDFCoefficients FLYWHEEL_PIDF_COEFFICIENTS = new PIDFCoefficients(-0.000001,0,0,0.0011);
     public static double SHOOTER_FAR_VELOCITY = 1500; // Ticks/second
     public static double SHOOTER_CLOSE_VELOCITY = 1200; // Ticks/second
 

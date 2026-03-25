@@ -38,9 +38,10 @@ public class ShooterPIDTuning extends CommandOpMode {
 
     @Override
     public void initialize() {
+        robot.init(hardwareMap);
         super.reset();
 
-        robot.init(hardwareMap);
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
     }
 
     @Override
