@@ -25,7 +25,6 @@ public class SpindexerPIDTuning extends CommandOpMode {
 
     private final PIDFController spindexerPIDF = new PIDFController(P,I,D,F);
     public GamepadEx driver;
-    TelemetryData telemetryData = new TelemetryData(new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry()));
     public ElapsedTime timer;
     private final Robot robot = Robot.getInstance();
     public static int TARGET = 0;
@@ -35,9 +34,7 @@ public class SpindexerPIDTuning extends CommandOpMode {
 
     @Override
     public void initialize() {
-
         robot.init(hardwareMap);
-        telemetryData = new TelemetryData(new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry()));
 
         super.reset();
     }
