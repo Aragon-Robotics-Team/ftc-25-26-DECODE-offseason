@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.global;
 
+import com.qualcomm.robotcore.hardware.PIDCoefficients;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 public class Constants {
@@ -14,8 +15,10 @@ public class Constants {
     public final static double INTAKE_MOTOR_OUT = -1.0;
 
     // Spindexer
-    public static PIDFCoefficients SPINDEXER_PID_COEFFICIENTS = new PIDFCoefficients(0, 0, 0, 0); //tune this
-    public final static double TICKS_IN_DEGREE_SPINDEXER = 8192.0 / 360;
-    public final static int SPINDEXER_FORWARD_ONE = 120; //tune this
+    public static double spindexer_p = -0.00065;
+    public static double spindexer_i = 0;
+    public static double spindexer_d = 0;
+    public final static int TICKS_IN_DEGREE_SPINDEXER = 8192 / 360;
+    public final static int SPINDEXER_FORWARD_ONE = TICKS_IN_DEGREE_SPINDEXER * 120; //tune this
 
 }

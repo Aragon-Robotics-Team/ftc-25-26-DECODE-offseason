@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.seattlesolvers.solverslib.command.SubsystemBase;
+import com.seattlesolvers.solverslib.controller.PIDController;
 import com.seattlesolvers.solverslib.controller.PIDFController;
 import com.seattlesolvers.solverslib.hardware.motors.Motor;
 
@@ -15,7 +16,7 @@ public class SpindexerSubsystem extends SubsystemBase {
     /*public static double p = 0, i = 0, d = 0;
     public static double f = 0;*/
     public static int TARGET = 0; //double?
-    private final PIDFController spindexerController = new PIDFController(SPINDEXER_PID_COEFFICIENTS);
+    private final PIDController spindexerController = new PIDController(spindexer_p, spindexer_i, spindexer_d);
 
     public void setPIDF(double p, double i, double d, double f) {
         this.spindexerController.setPIDF(p,i,d,f);
