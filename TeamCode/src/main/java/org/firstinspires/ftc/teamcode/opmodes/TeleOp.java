@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "Teleop")
 public class TeleOp extends CommandOpMode {
-    private Follower follower;
+//    private Follower follower;
     public GamepadEx driver1;
     public GamepadEx driver2;
 
@@ -31,10 +31,11 @@ public class TeleOp extends CommandOpMode {
 
         //init robot which does most hardware initalizations I think
         robot.init(hardwareMap);
+        timer = new ElapsedTime();
 
-        follower = Constants.createFollower(hardwareMap);
-        follower.startTeleOpDrive();
-        follower.update();
+//        follower = Constants.createFollower(hardwareMap);
+//        follower.startTeleOpDrive();
+//        follower.update();
 
         driver1 = new GamepadEx(gamepad1);
         driver2 = new GamepadEx(gamepad2);
@@ -84,6 +85,7 @@ public class TeleOp extends CommandOpMode {
 
     @Override
     public void run() {
+        super.run();
         telemetry.addData("Loop time", timer.milliseconds());
         timer.reset();
 
