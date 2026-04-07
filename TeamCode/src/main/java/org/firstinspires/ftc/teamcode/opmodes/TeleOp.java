@@ -1,18 +1,15 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
-import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
-import com.pedropathing.follower.Follower;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.seattlesolvers.solverslib.command.CommandOpMode;
 import com.seattlesolvers.solverslib.command.InstantCommand;
 import com.seattlesolvers.solverslib.gamepad.GamepadEx;
 import com.seattlesolvers.solverslib.gamepad.GamepadKeys;
-import com.seattlesolvers.solverslib.util.TelemetryData;
+
 import static org.firstinspires.ftc.teamcode.global.Constants.*;
 
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 import org.firstinspires.ftc.teamcode.global.Robot;
-import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "Teleop")
@@ -30,7 +27,7 @@ public class TeleOp extends CommandOpMode {
         super.reset();
 
         //init robot which does most hardware initalizations I think
-        robot.init(hardwareMap);
+        robot.init(hardwareMap, telemetry);
         timer = new ElapsedTime();
 
 //        follower = Constants.createFollower(hardwareMap);
@@ -81,12 +78,14 @@ public class TeleOp extends CommandOpMode {
                     robot.shooterSubsystem.setTargetTicks(SHOOTER_FAR_VELOCITY);
                 })
         );
+
     }
 
     @Override
     public void run() {
         super.run();
         telemetry.addData("Loop time", timer.milliseconds());
+        telemetry.addData("Spindexer amp", robot.spindexerMotor.getCurrent(CurrentUnit.AMPS));
         timer.reset();
 
         telemetry.update();

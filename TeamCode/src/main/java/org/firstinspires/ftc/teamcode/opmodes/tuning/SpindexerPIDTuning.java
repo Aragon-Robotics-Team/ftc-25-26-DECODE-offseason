@@ -32,7 +32,7 @@ public class SpindexerPIDTuning extends CommandOpMode {
 
     @Override
     public void initialize() {
-        robot.init(hardwareMap);
+        robot.init(hardwareMap, telemetry);
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         
         super.reset();
