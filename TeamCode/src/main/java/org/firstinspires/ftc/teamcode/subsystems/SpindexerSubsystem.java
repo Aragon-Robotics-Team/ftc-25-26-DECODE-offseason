@@ -1,15 +1,17 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import com.qualcomm.robotcore.util.ElapsedTime;
 import com.seattlesolvers.solverslib.command.SubsystemBase;
 import com.seattlesolvers.solverslib.controller.PIDController;
-import com.seattlesolvers.solverslib.controller.PIDFController;
-import com.seattlesolvers.solverslib.hardware.motors.Motor;
 
 import static org.firstinspires.ftc.teamcode.global.Constants.*;
+
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 import org.firstinspires.ftc.teamcode.global.Robot;
 
 public class SpindexerSubsystem extends SubsystemBase {
     private final Robot robot = Robot.getInstance();
+    private ElapsedTime timer;
 
     double ticks = 8192.0;
 
@@ -31,7 +33,13 @@ public class SpindexerSubsystem extends SubsystemBase {
         setSpindexerTarget(advance);
     }
 
-
+    public boolean isSpindexerStalled(ElapsedTime timer, double targetPosition) {
+        if (timer.seconds() > 5
+                && Math.abs(robot.spindexerMotor.getCurrentPosition() - targetPosition) > (10 * TICKS_IN_DEGREE_SPINDEXER)
+                && robot.spindexerMotor.getCurrent(CurrentUnit.AMPS) > STALL_CURRENT
+        ) return true;
+        else return false;
+    }
 
     @Override
     public void periodic() {
@@ -42,6 +50,10 @@ public class SpindexerSubsystem extends SubsystemBase {
         //double power = pid + ff;
 
         robot.spindexerMotor.setPower(pid);
+
+        if (isSpindexerStalled(timer, spindexerController.getSetPoint())) {
+            setSpindexerTarget(-SPINDEXER_FORWARD_ONE);
+        }
     }
 
 
