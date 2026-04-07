@@ -15,7 +15,7 @@ public class SpindexerSubsystem extends SubsystemBase {
 
     /*public static double p = 0, i = 0, d = 0;
     public static double f = 0;*/
-    public static int TARGET = 0; //double?
+    public static int TARGET = 0;
     private final PIDController spindexerController = new PIDController(spindexer_p, spindexer_i, spindexer_d);
 
     public void setPIDF(double p, double i, double d, double f) {
@@ -25,6 +25,13 @@ public class SpindexerSubsystem extends SubsystemBase {
     public void setSpindexerTarget(int newTarget) {
         TARGET = newTarget;
     }
+
+    public void advanceSpindexer(int rotations) {
+        int advance = TARGET + SPINDEXER_FORWARD_ONE * rotations;
+        setSpindexerTarget(advance);
+    }
+
+
 
     @Override
     public void periodic() {

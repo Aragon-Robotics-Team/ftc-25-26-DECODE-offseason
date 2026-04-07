@@ -60,13 +60,13 @@ public class TeleOp extends CommandOpMode {
         //spindexer
         driver1.getGamepadButton(GamepadKeys.Button.CIRCLE).whenPressed(
                 new InstantCommand(() -> {
-                    robot.spindexerSubsystem.setSpindexerTarget(SPINDEXER_FORWARD_ONE);
+                    robot.spindexerSubsystem.advanceSpindexer(1);
                 })
         );
 
         driver1.getGamepadButton(GamepadKeys.Button.SQUARE).whenPressed(
                 new InstantCommand(() -> {
-                    robot.spindexerSubsystem.setSpindexerTarget(-SPINDEXER_FORWARD_ONE);
+                    robot.spindexerSubsystem.advanceSpindexer(-1);
                 })
         );
 
